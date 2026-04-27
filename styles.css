@@ -1,0 +1,342 @@
+/* ============================================================
+   PAGZEN DESIGN SYSTEM — Colors & Type
+   Based on the official brand guide (Graphix Design, Fev 2025).
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: 'Dongle';
+  src: url('fonts/Dongle-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dongle';
+  src: url('fonts/Dongle-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dongle';
+  src: url('fonts/Dongle-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- Institutional Colors (from brand guide) ---------- */
+  /* Azul Petróleo — primary. Almost every surface, text, button. */
+  --pz-petrol: #00313C;           /* Pantone 547C · R0 G49 B60 */
+  --pz-petrol-90: #1a4750;
+  --pz-petrol-80: #335a62;
+  --pz-petrol-60: #667a80;
+  --pz-petrol-40: #99a8ad;
+  --pz-petrol-20: #ccd6d8;
+  --pz-petrol-10: #e6ebec;
+  --pz-petrol-05: #f2f5f5;
+
+  /* Verde Limão — accent only. Highlights, pictorial elements, glyphs. */
+  /* NEVER apply logo entirely in lime. */
+  --pz-lime: #D0DF00;             /* Pantone 389C · R208 G223 B0 */
+  --pz-lime-dim: #b6c200;
+  --pz-lime-soft: #e8f080;
+  --pz-lime-wash: #f7fae0;
+
+  /* Neutrals */
+  --pz-black: #000000;
+  --pz-white: #ffffff;
+  --pz-ink: #0a1a1f;              /* slightly darker than petrol, for deep surfaces */
+  --pz-paper: #fbfcfc;            /* near-white, the default page background */
+  --pz-cream: #f5f2ec;            /* warm neutral — pairs well with hospitality imagery */
+
+  /* Greys (for body copy, borders, UI chrome) */
+  --pz-grey-900: #1a1f22;
+  --pz-grey-700: #3f4a4e;
+  --pz-grey-500: #6b7478;
+  --pz-grey-300: #b5bcbf;
+  --pz-grey-200: #d8dddf;
+  --pz-grey-100: #eef1f2;
+  --pz-grey-050: #f6f8f8;
+
+  /* ---------- Semantic tokens ---------- */
+  --fg-1: var(--pz-petrol);           /* primary text */
+  --fg-2: var(--pz-grey-700);         /* secondary text */
+  --fg-3: var(--pz-grey-500);         /* muted text, captions */
+  --fg-inverse: var(--pz-white);
+  --fg-accent: var(--pz-lime);
+  --fg-link: var(--pz-petrol);
+
+  --bg-1: var(--pz-paper);            /* default page bg */
+  --bg-2: var(--pz-white);            /* cards, raised surfaces on paper */
+  --bg-3: var(--pz-grey-050);         /* subtle alt surfaces */
+  --bg-inverse: var(--pz-petrol);     /* dark hero sections, footer */
+  --bg-accent: var(--pz-lime);
+  --bg-accent-wash: var(--pz-lime-wash);
+
+  --border-1: var(--pz-grey-200);     /* default hairline */
+  --border-2: var(--pz-grey-300);     /* stronger border */
+  --border-strong: var(--pz-petrol);
+
+  /* Status (derived — brand guide does not define these) */
+  --success: #1f7a58;
+  --warning: #b47a00;
+  --danger:  #a8341f;
+  --info:    var(--pz-petrol);
+
+  /* ---------- Radii ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* ---------- Spacing (4 / 8 scale) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ---------- Shadows (subtle; brand prefers flat) ---------- */
+  --shadow-xs: 0 1px 2px rgba(0, 49, 60, 0.06);
+  --shadow-sm: 0 2px 6px rgba(0, 49, 60, 0.08);
+  --shadow-md: 0 6px 18px rgba(0, 49, 60, 0.10);
+  --shadow-lg: 0 14px 40px rgba(0, 49, 60, 0.14);
+  --shadow-glow-lime: 0 0 0 4px rgba(208, 223, 0, 0.28);
+  --shadow-focus: 0 0 0 3px rgba(0, 49, 60, 0.22);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.5,.0,.2,1);
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 400ms;
+
+  /* ---------- Type families ---------- */
+  --font-display: 'Dongle', 'Dongle Fallback', system-ui, sans-serif;
+  --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* ---------- Type scale (body) ---------- */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 32px;
+  --fs-4xl: 40px;
+  --fs-5xl: 56px;
+  --fs-6xl: 72px;
+  --fs-7xl: 96px;  /* Dongle shines here */
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.2;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.6;
+
+  /* Letter-spacing — brand guide specifies Dongle +25/1000 (~0.025em) */
+  --tracking-display: 0.025em;
+  --tracking-eyebrow: 0.14em;   /* caps eyebrows — e.g. "A GRANDE VIRADA" */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+
+  /* ---------- Layout ---------- */
+  --container: 1200px;
+  --container-narrow: 880px;
+}
+
+/* ============================================================
+   Element-level defaults — use these, or mirror them in components
+   ============================================================ */
+
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ----- Display / headings (Dongle is very condensed & tall; use BIG sizes) ----- */
+.pz-display,
+.pz-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.88;
+  color: var(--fg-1);
+}
+.pz-display { font-size: clamp(72px, 9vw, 160px); }
+.pz-h1      { font-size: clamp(56px, 6.5vw, 112px); }
+.pz-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.92;
+  font-size: clamp(44px, 5vw, 80px);
+  color: var(--fg-1);
+}
+.pz-h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.95;
+  font-size: clamp(36px, 3.6vw, 56px);
+  color: var(--fg-1);
+}
+
+/* Body-style subtitles & section titles — Roboto, tight tracking */
+.pz-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+}
+.pz-subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+.pz-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.pz-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+.pz-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+.pz-caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-sm);
+  color: var(--fg-3);
+}
+
+/* Numeric callout — for stats like "+17%", "100+" */
+.pz-stat {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: var(--tracking-display);
+  color: var(--fg-1);
+  font-size: clamp(72px, 9vw, 144px);
+}
+.pz-stat--accent { color: var(--fg-accent); }  /* lime stat, on petrol bg */
+
+/* Semantic tag defaults (use via nesting or scope, not globally) */
+.pz-prose h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(56px,6vw,96px); line-height: 0.9; letter-spacing: var(--tracking-display); color: var(--fg-1); margin: 0 0 var(--space-5); }
+.pz-prose h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px,4.5vw,72px); line-height: 0.95; letter-spacing: var(--tracking-display); color: var(--fg-1); margin: var(--space-7) 0 var(--space-4); }
+.pz-prose h3 { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-2xl); line-height: var(--lh-snug); color: var(--fg-1); margin: var(--space-6) 0 var(--space-3); }
+.pz-prose p  { font-size: var(--fs-md); line-height: var(--lh-relaxed); color: var(--fg-2); margin: 0 0 var(--space-4); max-width: 64ch; }
+.pz-prose a  { color: var(--fg-link); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.pz-prose a:hover { color: var(--pz-petrol-80); text-decoration-thickness: 2px; }
+.pz-prose strong { font-weight: 600; color: var(--fg-1); }
+
+/* ----- Utility: on-petrol surfaces ----- */
+.pz-on-dark {
+  color: var(--fg-inverse);
+}
+.pz-on-dark .pz-subtitle,
+.pz-on-dark .pz-body { color: rgba(255,255,255,0.78); }
+.pz-on-dark .pz-eyebrow { color: var(--fg-accent); }
+
+/* ----- Focus ring (accessibility) ----- */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* ----- Selection ----- */
+::selection {
+  background: var(--pz-lime);
+  color: var(--pz-petrol);
+}

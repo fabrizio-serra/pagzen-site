@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pagzen — Plataforma de pagamentos para hotelaria</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./styles.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--pz-paper);color:var(--fg-1);font-family:var(--font-body);}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(251,252,252,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,49,60,.06);}
+  nav.top .inner{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1200px;margin:0 auto;}
+  nav.top img{height:32px;}
+  nav.top ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--fg-2);}
+  nav.top a.cta{background:var(--pz-petrol);color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:500;transition:all .22s;}
+  nav.top a.cta:hover{background:var(--pz-petrol-90);box-shadow:0 6px 18px rgba(0,49,60,.18);}
+
+  /* HERO */
+  .hero{padding:80px 0 72px;position:relative;overflow:hidden;}
+  .hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);margin-bottom:24px;}
+  .hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(60px,6.5vw,108px);line-height:.88;letter-spacing:.02em;margin:0;color:var(--pz-petrol);}
+  .hero h1 em{font-style:normal;color:var(--pz-petrol);position:relative;white-space:nowrap;}
+  .hero h1 em:after{content:'';position:absolute;left:0;right:0;bottom:-8%;height:18%;background:var(--pz-lime);z-index:-1;opacity:.9;border-radius:4px;}
+  .hero .lead{font-size:20px;line-height:1.5;color:var(--fg-2);max-width:560px;margin:28px 0 36px;}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{font-family:var(--font-body);font-size:15px;font-weight:500;padding:14px 26px;border-radius:8px;border:none;cursor:pointer;transition:all .22s;display:inline-flex;align-items:center;gap:8px;}
+  .btn.primary{background:var(--pz-petrol);color:#fff;}
+  .btn.primary:hover{background:var(--pz-petrol-90);transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,49,60,.18);}
+  .btn.secondary{background:transparent;color:var(--pz-petrol);border:1.5px solid var(--pz-petrol);}
+  .btn.secondary:hover{background:var(--pz-petrol-05);}
+  .hero-visual{position:absolute;right:-40px;top:70px;width:48%;max-width:620px;}
+  .hero-visual img{width:100%;border-radius:20px;box-shadow:0 30px 80px rgba(0,49,60,.18);}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-visual{position:static;width:100%;margin-top:40px;}}
+
+  /* STATS STRIP (petrol) */
+  .stats{background:var(--pz-petrol);color:#fff;padding:60px 0;}
+  .stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .stats .eyebrow{color:var(--pz-lime);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:40px;}
+  .stat-n{font-family:var(--font-display);font-weight:700;font-size:clamp(72px,7vw,112px);line-height:.85;letter-spacing:.02em;}
+  .stat-n.lime{color:var(--pz-lime);}
+  .stat-l{font-size:14px;line-height:1.4;color:rgba(255,255,255,.78);margin-top:6px;}
+
+  /* FLOW */
+  .flow{padding:100px 0;background:var(--pz-cream);}
+  .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px;}
+  .flow-step{display:flex;flex-direction:column;}
+  .flow-img{aspect-ratio:3/4;background:var(--pz-petrol-05);border-radius:16px;overflow:hidden;position:relative;margin-bottom:20px;}
+  .flow-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .flow-n{font-family:var(--font-display);font-weight:700;font-size:56px;line-height:.85;color:var(--pz-lime);letter-spacing:.02em;margin-bottom:4px;}
+  .flow-step h4{font-family:var(--font-body);font-weight:600;font-size:20px;margin:0 0 8px;color:var(--pz-petrol);}
+  .flow-step p{font-size:14px;line-height:1.55;color:var(--fg-2);margin:0;}
+  @media (max-width:900px){.flow-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* COMPARE */
+  .compare{padding:100px 0;}
+  .section-head{text-align:center;margin-bottom:60px;}
+  .section-head .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);margin-bottom:20px;}
+  .section-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(44px,5vw,80px);line-height:.9;letter-spacing:.02em;color:var(--pz-petrol);margin:0;max-width:900px;margin-left:auto;margin-right:auto;}
+  .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .cmp-col{background:#fff;border-radius:20px;border:1px solid rgba(0,49,60,.08);padding:32px 36px;}
+  .cmp-col.pz{background:var(--pz-petrol);color:#fff;border:none;position:relative;}
+  .cmp-col h3{font-family:var(--font-body);font-weight:600;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-2);margin:0 0 28px;}
+  .cmp-col.pz h3{color:var(--pz-lime);}
+  .cmp-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid rgba(0,49,60,.06);font-size:15px;}
+  .cmp-col.pz .cmp-row{border-color:rgba(255,255,255,.08);}
+  .cmp-row:first-of-type{border:none;}
+  .mark{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none;margin-top:1px;}
+  .mark.check{background:var(--pz-lime);color:var(--pz-petrol);}
+  .mark.x{background:rgba(0,49,60,.08);color:var(--fg-3);}
+  .cmp-col.pz .mark.check{background:var(--pz-lime);color:var(--pz-petrol);}
+  .dim{color:var(--fg-3);}
+
+  /* FEATURE — split image/text (reused for international + efficiency) */
+  .feature{padding:100px 0;}
+  .feature.dark{background:var(--pz-petrol);color:#fff;}
+  .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .feature.reverse .feature-grid{direction:rtl;}
+  .feature.reverse .feature-grid > *{direction:ltr;}
+  @media (max-width:900px){.feature-grid{grid-template-columns:1fr;gap:40px;}}
+  .feature .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);margin-bottom:20px;}
+  .feature.dark .eyebrow{color:var(--pz-lime);}
+  .feature h2{font-family:var(--font-display);font-weight:700;font-size:clamp(44px,4.8vw,72px);line-height:.92;letter-spacing:.02em;margin:0 0 24px;color:var(--pz-petrol);}
+  .feature.dark h2{color:#fff;}
+  .feature h2 em{font-style:normal;color:var(--pz-petrol);position:relative;white-space:nowrap;}
+  .feature h2 em:after{content:'';position:absolute;left:0;right:0;bottom:0;height:16%;background:var(--pz-lime);z-index:-1;border-radius:4px;}
+  .feature.dark h2 em{color:var(--pz-lime);}
+  .feature.dark h2 em:after{display:none;}
+  .feature .lead{font-size:18px;line-height:1.55;color:var(--fg-2);margin:0 0 28px;max-width:520px;}
+  .feature.dark .lead{color:rgba(255,255,255,.78);}
+  .feature-checks{list-style:none;padding:0;margin:0;}
+  .feature-checks li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;font-size:16px;color:var(--pz-petrol);}
+  .feature.dark .feature-checks li{color:#fff;}
+  .feature-checks .mark{width:22px;height:22px;border-radius:50%;background:var(--pz-lime);color:var(--pz-petrol);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none;margin-top:1px;}
+  .feature-visual{border-radius:20px;overflow:hidden;background:var(--pz-petrol-05);position:relative;display:flex;align-items:center;justify-content:center;}
+  .feature-visual img{width:100%;height:auto;display:block;object-fit:contain;}
+  .feature.dark .feature-visual{background:rgba(255,255,255,.04);}
+  /* Glyph card for efficiency section — stylized "taxa única" */
+  .feature-chip{aspect-ratio:4/3;border-radius:20px;background:var(--pz-cream);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px;border:1px solid rgba(0,49,60,.06);}
+  .feature-chip .row{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#fff;border-radius:12px;border:1px solid rgba(0,49,60,.06);font-size:14px;color:var(--fg-2);}
+  .feature-chip .row.hi{background:var(--pz-petrol);color:#fff;border:none;}
+  .feature-chip .row .flag{width:32px;height:20px;border-radius:3px;background:linear-gradient(135deg,var(--pz-petrol-20),var(--pz-petrol-40));font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;flex:none;letter-spacing:.02em;}
+  .feature-chip .row.hi .flag{background:rgba(255,255,255,.15);}
+  .feature-chip .row .rate{margin-left:auto;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--pz-petrol);}
+  .feature-chip .row.hi .rate{color:var(--pz-lime);}
+
+  /* BENEFITS */
+  .benefits{padding:100px 0;background:#fff;}
+  .ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .ben{padding:28px;background:var(--pz-paper);border-radius:16px;border:1px solid rgba(0,49,60,.05);transition:all .22s;}
+  .ben:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,49,60,.08);border-color:transparent;}
+  .ben .num{font-family:var(--font-display);font-weight:700;font-size:64px;line-height:.85;color:var(--pz-lime);letter-spacing:.02em;}
+  .ben h4{font-family:var(--font-body);font-size:18px;font-weight:600;margin:12px 0 8px;color:var(--pz-petrol);}
+  .ben p{font-size:14px;line-height:1.55;color:var(--fg-2);margin:0;}
+
+  /* QUOTE */
+  .quote{padding:100px 0;background:var(--pz-paper);}
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:900px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-box{background:var(--pz-petrol);border-radius:24px;padding:56px 56px 48px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+  .quote-box.alt{background:#fff;border:1px solid rgba(0,49,60,.08);}
+  .quote-box:before{content:'\201C';position:absolute;top:-30px;left:40px;font-family:var(--font-display);font-size:200px;line-height:1;color:var(--pz-lime);font-weight:700;opacity:.85;}
+  .quote-box.alt:before{color:var(--pz-lime);opacity:1;}
+  .quote-box q{font-family:var(--font-display);font-weight:400;font-size:clamp(32px,2.8vw,44px);line-height:1;letter-spacing:.02em;color:#fff;display:block;quotes:none;position:relative;z-index:1;flex:1;}
+  .quote-box.alt q{color:var(--pz-petrol);}
+  .quote-box q:before,.quote-box q:after{content:'';}
+  .quote-attr{margin-top:32px;color:rgba(255,255,255,.78);font-size:13px;letter-spacing:.06em;text-transform:uppercase;position:relative;z-index:1;}
+  .quote-attr b{color:#fff;font-weight:600;display:block;font-size:15px;letter-spacing:.02em;text-transform:none;margin-bottom:2px;}
+  .quote-box.alt .quote-attr{color:var(--fg-3);}
+  .quote-box.alt .quote-attr b{color:var(--fg-1);}
+
+  /* CLIENTS */
+  .clients{padding:80px 0;background:#fff;text-align:center;}
+  .clients .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);margin-bottom:40px;}
+  .client-row{display:flex;gap:60px;align-items:center;justify-content:center;flex-wrap:wrap;opacity:.75;}
+  .client-row img{max-height:54px;max-width:160px;object-fit:contain;filter:grayscale(1);}
+
+  /* CTA */
+  .cta{padding:110px 0;background:var(--pz-petrol);color:#fff;text-align:center;}
+  .cta h2{font-family:var(--font-display);font-weight:700;font-size:clamp(48px,6vw,96px);line-height:.9;letter-spacing:.02em;margin:0 0 20px;}
+  .cta h2 em{font-style:normal;color:var(--pz-lime);}
+  .cta p{font-size:18px;color:rgba(255,255,255,.78);max-width:560px;margin:0 auto 40px;}
+  .cta .btn.primary{background:var(--pz-lime);color:var(--pz-petrol);}
+  .cta .btn.primary:hover{background:var(--pz-lime-dim);}
+
+  /* FOOTER */
+  footer{background:var(--pz-ink);color:rgba(255,255,255,.65);padding:48px 0 32px;}
+  footer .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+  footer img.flogo{height:28px;margin-bottom:16px;}
+  footer .f-grid p{font-size:13px;line-height:1.5;max-width:280px;color:rgba(255,255,255,.55);}
+  footer h5{color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin:0 0 14px;}
+  footer li{list-style:none;font-size:14px;padding:4px 0;}
+  footer ul{padding:0;margin:0;}
+  footer .f-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4);}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="#top"><img src="./assets/logos/pagzen-logo-rgb.png" alt="Pagzen"></a>
+    <ul>
+      <li><a href="#top">Hotelaria</a></li>
+      <li><a href="#flow">Como Funciona</a></li>
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="cta" href="https://wa.me/5511945353438" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/5511945353438','_blank');return false;">Agendar demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Plataforma de pagamentos para hotelaria</div>
+      <h1>Seu hotel não precisa de uma <em>maquininha.</em><br>Precisa de receita.</h1>
+      <p class="lead">A Pagzen usa o pagamento para aumentar o faturamento do seu hotel — com taxa zero no parcelado, conciliação única e experiência premium para o hóspede.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://wa.me/5511945353438" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/5511945353438','_blank');return false;">Agendar demonstração →</a>
+        <a class="btn secondary" href="#flow">Ver como funciona</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="./assets/imagery/pagzen-checkout-2.png" alt="Tablet Pagzen no checkout do hotel">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="eyebrow">A grande virada</div>
+    <div class="grid">
+      <div><div class="stat-n lime">+17%</div><div class="stat-l">de aumento no<br>consumo interno</div></div>
+      <div><div class="stat-n">0%</div><div class="stat-l">de taxa no<br>parcelado</div></div>
+      <div><div class="stat-n">24h</div><div class="stat-l">para o hotel<br>receber</div></div>
+      <div><div class="stat-n lime">100+</div><div class="stat-l">operações hoteleiras<br>ativas no Brasil</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Experiência no balcão</div>
+      <h2>Veja como funciona na prática</h2>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="flow-img"><img src="./assets/imagery/pagzen-checkout-1.png" alt="Atendente preparando a conta no tablet"></div>
+        <div class="flow-n">01</div>
+        <h4>Conta pronta</h4>
+        <p>O atendente encerra a conta, o hóspede revisa a fatura e o valor é digitado na maquininha.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-img"><img src="./assets/imagery/pagzen-checkout-2.png" alt="Hóspede escolhendo forma de pagamento"></div>
+        <div class="flow-n">02</div>
+        <h4>Forma de pagamento</h4>
+        <p>Crédito, débito, PIX ou PIX argentino (QR 3.0) — o hóspede escolhe como pagar.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-img"><img src="./assets/imagery/pagzen-checkout-closeup.png" alt="Parcelamento em até 18x na tela do tablet"></div>
+        <div class="flow-n">03</div>
+        <h4>Parcelamento flexível</h4>
+        <p>Hóspede parcela em até 18x. Hotel recebe em 24h e com taxa zero no parcelado.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-img"><img src="./assets/imagery/pagzen-processing.png" alt="Tela de processamento e confirmação"></div>
+        <div class="flow-n">04</div>
+        <h4>Pagamento confirmado</h4>
+        <p>Transação processada com segurança. Experiência fluida do início ao fim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare" id="diferenciacao">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Diferenciação</div>
+      <h2>A maquininha comum é um custo. A Pagzen é um motor de receita.</h2>
+    </div>
+    <div class="cmp-grid">
+      <div class="cmp-col">
+        <h3>Maquininha comum</h3>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Processa crédito, débito e PIX</span></div>
+        <div class="cmp-row"><span class="mark x">✕</span><span class="dim">Uma taxa para cada bandeira — conciliação complexa</span></div>
+        <div class="cmp-row"><span class="mark x">✕</span><span class="dim">Não aumenta consumo interno</span></div>
+        <div class="cmp-row"><span class="mark x">✕</span><span class="dim">Não processa PIX argentino (QR 3.0)</span></div>
+        <div class="cmp-row"><span class="mark x">✕</span><span class="dim">Genérica para qualquer negócio</span></div>
+      </div>
+      <div class="cmp-col pz">
+        <h3>Pagzen</h3>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Aumenta o consumo interno em 17%</span></div>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Taxa zero no parcelado</span></div>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Taxa única para todas as bandeiras</span></div>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Melhora a experiência do hóspede</span></div>
+        <div class="cmp-row"><span class="mark check">✓</span><span>Pensada exclusivamente para hotelaria</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNATIONAL GUESTS -->
+<section class="feature dark">
+  <div class="container">
+    <div class="feature-grid">
+      <div>
+        <div class="eyebrow">Hóspedes internacionais</div>
+        <h2>O hóspede estrangeiro paga com <em>facilidade.</em> Seu hotel recebe sem complicação.</h2>
+        <p class="lead">A Pagzen facilita o pagamento de hóspedes argentinos com PIX argentino (QR 3.0). Sem barreira de moeda, sem IOF, sem perda de conversão. Mais praticidade para quem paga e para quem recebe.</p>
+        <ul class="feature-checks">
+          <li><span class="mark">✓</span>Solução abrangente para toda a Latam</li>
+          <li><span class="mark">✓</span>Experiência fluida para o hóspede</li>
+          <li><span class="mark">✓</span>Conversão sem barreiras</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="./assets/imagery/pagzen-qr-cash.jpg" alt="Pagamento com QR argentino">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONAL EFFICIENCY -->
+<section class="feature reverse">
+  <div class="container">
+    <div class="feature-grid">
+      <div>
+        <div class="eyebrow">Eficiência operacional</div>
+        <h2>Taxa <em>única</em> para todas as bandeiras.</h2>
+        <p class="lead">Menos trabalho e mais controle para o financeiro. Uma única taxa simplifica a conciliação e traz visibilidade real. Seu time ganha eficiência e seu financeiro ganha controle.</p>
+        <ul class="feature-checks">
+          <li><span class="mark">✓</span>Conciliação automática de transações</li>
+          <li><span class="mark">✓</span>Menos processos manuais na recepção</li>
+          <li><span class="mark">✓</span>Relatórios claros e em tempo real</li>
+          <li><span class="mark">✓</span>Mais fluidez operacional no dia a dia</li>
+        </ul>
+      </div>
+      <div class="feature-chip">
+        <div class="row"><span class="flag">V</span>Visa<span class="rate">2,4%</span></div>
+        <div class="row"><span class="flag">M</span>Mastercard<span class="rate">2,9%</span></div>
+        <div class="row"><span class="flag">E</span>Elo<span class="rate">3,1%</span></div>
+        <div class="row"><span class="flag">A</span>Amex<span class="rate">3,8%</span></div>
+        <div class="row hi"><span class="flag">PZ</span>Pagzen — todas as bandeiras<span class="rate">Taxa única</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="beneficios">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Benefícios</div>
+      <h2>Benefícios reais para a operação do seu hotel</h2>
+    </div>
+    <div class="ben-grid">
+      <div class="ben"><div class="num">01</div><h4>Mais consumo interno</h4><p>Hóspedes gastam mais quando o pagamento é flexível e simples.</p></div>
+      <div class="ben"><div class="num">02</div><h4>Mais margem</h4><p>Taxa zero no parcelado e redução de taxas no à vista. Margem real.</p></div>
+      <div class="ben"><div class="num">03</div><h4>Recebimento em 24h</h4><p>O hotel recebe no dia seguinte, independente do parcelamento do hóspede.</p></div>
+      <div class="ben"><div class="num">04</div><h4>Sem fidelidade</h4><p>Sem contrato de permanência. A Pagzen só opera onde gera resultado.</p></div>
+      <div class="ben"><div class="num">05</div><h4>Menos atrito operacional</h4><p>Conciliação automática, menos retrabalho e mais controle financeiro.</p></div>
+      <div class="ben"><div class="num">06</div><h4>Experiência premium</h4><p>Pagamento moderno e profissional que eleva a percepção do hóspede.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <div class="container">
+    <div class="quote-grid">
+      <div class="quote-box">
+        <q>Desde que implementamos a Pagzen, o consumo no restaurante cresceu. Pelas nossas contas foi em torno de 20%. O hóspede parcela e consome mais.</q>
+        <div class="quote-attr"><b>Gilberto Teles</b>Gerente Geral · Porto Seguro Eco Bahia</div>
+      </div>
+      <div class="quote-box alt">
+        <q>Tiramos a maquininha antiga e só ficamos com a Pagzen. Os hóspedes gostam muito da experiência com o tablet, passa uma percepção premium.</q>
+        <div class="quote-attr"><b>Gisele Carvalho</b>Proprietária · Hotel Princesa Isabel — Petrópolis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clientes">
+  <div class="container">
+    <div class="eyebrow">Hotéis, pousadas e resorts que escolheram vender mais</div>
+    <div class="client-row">
+      <img src="./assets/client-logos/wyndham-rio-barra.jpeg" alt="Wyndham Rio Barra">
+      <img src="./assets/client-logos/porto-seguro-eco-resort.jpeg" alt="Porto Seguro Eco Resort">
+      <img src="./assets/client-logos/porto-seguro-praia-resort.jpeg" alt="Porto Seguro Praia Resort">
+      <img src="./assets/client-logos/hotel-caxambu.jpeg" alt="Hotel Caxambu">
+      <img src="./assets/client-logos/princesa-isabel.jpeg" alt="Hotel Princesa Isabel">
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contato">
+  <div class="container">
+    <h2>Por que continuar com uma maquininha<br>que só processa <em>pagamento?</em></h2>
+    <p>Sem fidelidade, sem amarras. Só resultado.</p>
+    <a class="btn primary" href="https://wa.me/5511945353438" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/5511945353438','_blank');return false;">Quero para meu hotel →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div>
+        <img class="flogo" src="./assets/logos/pagzen-logo-white.png" alt="Pagzen">
+        <p>Plataforma de pagamentos construída para hotelaria. 100+ operações ativas no Brasil.</p>
+      </div>
+      <div><h5>Produto</h5><ul><li>Hotelaria</li><li>Agências</li><li>Integrações</li></ul></div>
+      <div><h5>Empresa</h5><ul><li>Sobre</li><li>Clientes</li><li>Imprensa</li></ul></div>
+      <div><h5>Contato</h5><ul><li><a href="https://wa.me/5511945353438" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WhatsApp · +55 11 94535-3438</a></li><li>contato@pagzen.io</li><li>LinkedIn</li></ul></div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2025 Pagzen · pagzen.io</span>
+      <span>Sem fidelidade, sem amarras. Só resultado.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
