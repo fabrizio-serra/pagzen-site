@@ -108,6 +108,100 @@
   .feature-chip .row .rate{margin-left:auto;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--pz-petrol);}
   .feature-chip .row.hi .rate{color:var(--pz-lime);}
 
+  .pillar.with-vis{padding:48px 44px 32px;}
+  .pillar.with-vis h3{font-size:clamp(36px,3.4vw,52px);line-height:.95;}
+  .pillar.with-vis .pill-cta{margin-bottom:8px;}
+  .pillar.with-vis .wa-vis{margin-top:32px;width:100%;max-width:380px;margin-left:auto;margin-right:auto;}
+  @media (max-width:900px){.pillar.with-vis .wa-vis{max-width:320px;}}
+
+  /* WhatsApp link visual */
+  .wa-vis{position:relative;border-radius:18px;background:#f3eee5;padding:18px 14px 16px;display:flex;flex-direction:column;gap:10px;align-self:start;overflow:hidden;}
+  .wa-vis:before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 25% 30%, rgba(0,49,60,.04) 1px, transparent 1px),radial-gradient(circle at 75% 70%, rgba(0,49,60,.03) 1px, transparent 1px);background-size:24px 24px,32px 32px;opacity:.5;pointer-events:none;}
+  .wa-head{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--fg-3);position:relative;padding:2px 4px 8px;border-bottom:1px solid rgba(0,49,60,.06);}
+  .wa-head .ava{width:24px;height:24px;border-radius:50%;background:var(--pz-petrol);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex:none;}
+  .wa-head b{color:var(--pz-petrol);font-weight:600;font-size:11px;}
+  .wa-head span{margin-left:auto;color:#9aa6ab;font-size:10px;}
+  .wa-bubble{position:relative;background:#fff;border-radius:10px 10px 10px 2px;padding:10px;font-size:11px;color:var(--pz-petrol);line-height:1.4;box-shadow:0 1px 2px rgba(0,49,60,.08);max-width:96%;align-self:flex-start;}
+  .wa-bubble .msg{margin-bottom:8px;}
+  .wa-card{border-left:3px solid var(--pz-lime);background:#fbfcfc;border-radius:6px;padding:9px 10px;display:flex;flex-direction:column;gap:4px;margin-bottom:6px;}
+  .wa-card .hotel{font-size:10px;font-weight:700;color:var(--pz-petrol);}
+  .wa-card .amt{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--pz-petrol);line-height:1;letter-spacing:.02em;}
+  .wa-card .pay{font-size:9px;color:var(--fg-3);}
+  .wa-card .url{font-size:9px;color:var(--pz-petrol-70);font-family:var(--font-mono);margin-top:2px;}
+  .wa-meta{display:flex;align-items:center;gap:4px;font-size:9px;color:#9aa6ab;justify-content:flex-end;margin-top:4px;}
+  .wa-meta b{color:#3aa3ff;font-weight:700;letter-spacing:-2px;}
+  .wa-action{display:flex;justify-content:center;margin-top:6px;}
+  .wa-action span{font-size:10px;color:var(--fg-3);background:rgba(255,255,255,.7);padding:5px 10px;border-radius:12px;display:inline-flex;align-items:center;gap:6px;}
+  .wa-action span:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pz-lime);}
+  @media (max-width:900px){.wa-vis{max-width:320px;margin:8px auto 0;}}
+
+  /* PRODUCTS — pillars (link + integration) */
+  .products{padding:100px 0;background:var(--pz-cream);}
+  .products .section-head{margin-bottom:48px;}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:900px){.pillars{grid-template-columns:1fr;}}
+  .pillar{background:#fff;border-radius:24px;padding:48px 44px;border:1px solid rgba(0,49,60,.06);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+  .pillar.dark{background:var(--pz-petrol);color:#fff;border:none;display:flex;flex-direction:column;padding:48px 44px;}
+  .pillar.dark .pill-content{display:flex;flex-direction:column;min-width:0;}
+  @media (max-width:900px){.pillar.dark{grid-template-columns:1fr;}}
+  .pillar .tag{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;}
+  .pillar.dark .tag{color:var(--pz-lime);}
+  .pillar .tag:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pz-lime);display:inline-block;}
+  .pillar h3{font-family:var(--font-display);font-weight:700;font-size:clamp(36px,3.4vw,52px);line-height:.95;letter-spacing:.02em;margin:0 0 18px;color:var(--pz-petrol);}
+  .pillar.dark h3{color:#fff;}
+  .pillar h3 em{font-style:normal;color:var(--pz-petrol);position:relative;}
+  .pillar h3 em:after{content:'';position:absolute;left:0;right:0;bottom:0;height:14%;background:var(--pz-lime);z-index:-1;border-radius:3px;}
+  .pillar.dark h3 em{color:var(--pz-lime);}
+  .pillar.dark h3 em:after{display:none;}
+  .pillar p.lead{font-size:16px;line-height:1.6;color:var(--fg-2);margin:0 0 28px;}
+  .pillar.dark p.lead{color:rgba(255,255,255,.78);}
+  .pillar ul.uses{list-style:none;padding:0;margin:0 0 32px;flex:1;}
+  .pillar ul.uses li{padding:10px 0;border-top:1px solid rgba(0,49,60,.06);font-size:14px;color:var(--pz-petrol);display:flex;align-items:flex-start;gap:10px;}
+  .pillar.dark ul.uses li{color:#fff;border-color:rgba(255,255,255,.1);}
+  .pillar ul.uses li:first-child{border-top:none;}
+  .pillar ul.uses li:before{content:'\2192';color:var(--pz-lime);font-weight:700;flex:none;}
+  .pillar ul.uses li strong{font-weight:600;color:var(--pz-petrol);}
+  .pillar.dark ul.uses li strong{color:var(--pz-lime);}
+  .pillar .pill-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--pz-petrol);padding:12px 0;border-top:1px solid rgba(0,49,60,.1);}
+  .pillar.dark .pill-cta{color:var(--pz-lime);border-color:rgba(255,255,255,.15);}
+  /* checkout mock (pure CSS) */
+  .co-mock{position:relative;border-radius:14px;background:#f6f7f8;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06);align-self:stretch;overflow:hidden;display:flex;flex-direction:column;color:var(--pz-petrol);}
+  .co-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#eceff1;border-bottom:1px solid #dde2e5;flex:none;}
+  .co-bar i{width:8px;height:8px;border-radius:50%;background:#ff5f57;display:block;}
+  .co-bar i:nth-child(2){background:#febc2e;}
+  .co-bar i:nth-child(3){background:#28c840;}
+  .co-bar span{margin-left:8px;font-family:var(--font-mono);font-size:9px;color:#94a0a6;letter-spacing:.04em;}
+  .co-body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  /* stepper */
+  .co-steps{display:flex;align-items:center;justify-content:space-between;gap:4px;background:#fff;padding:10px 12px;border-radius:8px;}
+  .co-step{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8px;color:#9aa6ab;flex:none;}
+  .co-step b{width:18px;height:18px;border-radius:50%;background:#e1e5e7;color:#9aa6ab;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:9px;}
+  .co-step.done b{background:var(--pz-lime);color:var(--pz-petrol);}
+  .co-step.done b:before{content:'\2713';}
+  .co-step.active b{background:var(--pz-lime);color:var(--pz-petrol);}
+  .co-step.done b{font-size:0;}
+  .co-step.done b:before{font-size:11px;}
+  .co-line{flex:1;height:2px;background:#e1e5e7;margin-top:-12px;}
+  .co-line.done{background:var(--pz-lime);}
+  .co-step.active{color:var(--pz-petrol);font-weight:600;}
+  /* card */
+  .co-card{background:#fff;border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .co-card h6{margin:0;font-family:var(--font-sans);font-size:11px;font-weight:700;color:var(--pz-petrol);display:flex;align-items:center;gap:6px;}
+  .co-card h6:before{content:'';width:14px;height:10px;background:var(--pz-petrol);border-radius:2px;display:inline-block;}
+  .co-label{font-size:8px;font-weight:600;color:var(--pz-petrol);letter-spacing:.02em;}
+  .co-method{display:flex;flex-direction:column;gap:5px;}
+  .co-tab{padding:8px 10px;border:1.5px solid #e1e5e7;border-radius:7px;font-size:9px;font-weight:600;color:var(--pz-petrol);background:#fff;display:flex;align-items:center;gap:6px;}
+  .co-tab.on{border-color:var(--pz-lime);background:rgba(192,228,67,.12);}
+  .co-tab .ic{width:11px;height:8px;background:var(--pz-lime);border-radius:1px;flex:none;}
+  .co-tab.pix .ic{background:transparent;border:1.5px solid var(--pz-petrol);border-radius:0;}
+  .co-input{height:22px;border:1px solid #e1e5e7;border-radius:5px;background:#fff;padding:0 8px;font-size:8px;color:#b3bbc0;display:flex;align-items:center;}
+  .co-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+  .co-foot{display:flex;justify-content:space-between;gap:6px;margin-top:auto;padding-top:6px;}
+  .co-btn{flex:1;height:24px;border-radius:6px;font-size:9px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:4px;}
+  .co-btn.ghost{background:#fff;border:1px solid #e1e5e7;color:var(--pz-petrol);}
+  .co-btn.primary{background:var(--pz-lime);color:var(--pz-petrol);}
+  @media (max-width:900px){.co-mock{max-width:340px;margin:8px auto 0;min-height:480px;}}
+
   /* BENEFITS */
   .benefits{padding:100px 0;background:#fff;}
   .ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -166,6 +260,7 @@
     <ul>
       <li><a href="#top">Hotelaria</a></li>
       <li><a href="#flow">Como Funciona</a></li>
+      <li><a href="#produtos">Produtos</a></li>
       <li><a href="#beneficios">Benefícios</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
@@ -310,6 +405,60 @@
         <div class="row"><span class="flag">E</span>Elo<span class="rate">3,1%</span></div>
         <div class="row"><span class="flag">A</span>Amex<span class="rate">3,8%</span></div>
         <div class="row hi"><span class="flag">PZ</span>Pagzen — todas as bandeiras<span class="rate">Taxa única</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS — link de pagamento + integração cross-border -->
+<section class="products" id="produtos">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Mais que maquininha</div>
+      <h2>Cobrar antes, depois e <em>online.</em><br>Em qualquer canal.</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar with-vis">
+        <div class="tag">Link de pagamento</div>
+        <h3>Cobrança remota para hotéis, pousadas e agências.</h3>
+        <p class="lead">Envie um link por WhatsApp, e-mail ou SMS e receba antes do hóspede chegar. Pré-pagamento, no-show, parcelamento e <strong>split automático</strong> para repasse direto a fornecedores — sem bi-tributação.</p>
+        <ul class="uses">
+          <li>Pré-pagamento e garantia de reserva</li>
+          <li>Cobrança de no-show e multas</li>
+          <li>Pacotes, eventos e diárias parceladas</li>
+          <li><strong>Split de pagamento</strong> para repasse a fornecedores — sem bi-tributação</li>
+        </ul>
+        <a class="pill-cta" href="https://wa.me/5511945353438" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/5511945353438','_blank');return false;">Quero usar link de pagamento →</a>
+        <div class="wa-vis" aria-hidden="true">
+          <div class="wa-head">
+            <div class="ava">PI</div>
+            <b>Pousada Princesa Isabel</b>
+            <span>14:32</span>
+          </div>
+          <div class="wa-bubble">
+            <div class="msg">Olá Marina! Segue o link da sua reserva 🏨</div>
+            <div class="wa-card">
+              <div class="hotel">Reserva #4571 · 3 diárias</div>
+              <div class="amt">R$ 1.840,00</div>
+              <div class="pay">10x R$ 184,00 sem juros</div>
+              <div class="url">pagamentos.pagzen.io/PGZ-46V65J</div>
+            </div>
+            <div class="wa-meta"><span>14:32</span><b>✓✓</b></div>
+          </div>
+          <div class="wa-action"><span>Pago em 2 min</span></div>
+        </div>
+      </div>
+      <div class="pillar dark">
+        <div class="tag">Integração cross-border</div>
+        <h3>Checkout integrado no site da sua <em>agência.</em></h3>
+        <p class="lead">API Pagzen embutida ao checkout de agências e ecommerce parceiros. Seu cliente paga em moeda estrangeira e você recebe em moeda local. Ofereça PIX argentino, cartão e métodos de pagamento LATAM direto no checkout.</p>
+        <ul class="uses">
+          <li>API embutida no checkout do parceiro</li>
+          <li>PIX argentino (QR 3.0) e métodos LATAM</li>
+          <li>Conciliação consolidada multi-país</li>
+          <li>Suporte às principais bandeiras internacionais</li>
+        </ul>
+        <a class="pill-cta" href="https://wa.me/5511945353438" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/5511945353438','_blank');return false;">Falar com time de parcerias →</a>
       </div>
     </div>
   </div>
